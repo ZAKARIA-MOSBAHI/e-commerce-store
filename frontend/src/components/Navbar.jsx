@@ -92,7 +92,7 @@ function Navbar() {
           <div className="flex items-center gap-4 p-3 border">
             <img
               src={dropdown_icon}
-              className="h-4 rotate-180 cursor-pointer"
+              className="h-4 rotate-90 cursor-pointer"
               alt=""
             />
             <p className="cursor-pointer">Back</p>

@@ -17,7 +17,13 @@ import { useContext } from "react";
 import { ShopContext } from "./context/ProductContext";
 
 function App() {
-  const { showFilterMenu, setShowFilterMenu } = useContext(ShopContext);
+  const {
+    showFilterMenu,
+    setShowFilterMenu,
+    selectedFilterOptions,
+    setSelectedFilterOptions,
+    filterOptions,
+  } = useContext(ShopContext);
   return (
     <div
       className={` px-2  sm:px-[5vw] md:px-[7vw] lg:px-[9vw] relative overflow-hidden`}
@@ -25,6 +31,9 @@ function App() {
       <FilterMenu
         showFilterMenu={showFilterMenu}
         setShowFilterMenu={setShowFilterMenu}
+        selectedFilterOptions={selectedFilterOptions}
+        setSelectedFilterOptions={setSelectedFilterOptions}
+        filterOptions={filterOptions}
       />
       <SearchBar />
       <Navbar />

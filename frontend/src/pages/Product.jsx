@@ -12,6 +12,7 @@ export default function Product() {
   const { star_dull_icon, star_icon } = assets;
   const [sizeChoosen, setSizeChoosen] = useState(null);
 
+  const [err, setErr] = useState("");
   const fetchProductData = async () => {
     products.map((p) => {
       if (p._id === productId) {
@@ -70,7 +71,7 @@ export default function Product() {
           <p className="mt-5 text-gray-500 font-medium md:w-4/5">
             {product.description}
           </p>
-          <div className="flex flex-col gap-4 my-2 sm:my-8">
+          <div className="flex flex-col gap-4 my-2 sm:my-6">
             <p className="text-lg sm:text-xl">SIZES</p>
             <div className="flex gap-2">
               {product.sizes &&
@@ -90,10 +91,15 @@ export default function Product() {
                   );
                 })}
             </div>
+            {err && <span className="text-red-500 text-sm">{err}</span>}
           </div>
           <button
             className="px-8 py-2.5 bg-black text-white my-4"
-            onClick={() => addToCart({ ...product, sizeChoosen: sizeChoosen })}
+            onClick={() =>
+              sizeChoosen
+                ? addToCart({ ...product, sizeChoosen: sizeChoosen })
+                : setErr("Please select a size")
+            }
           >
             ADD TO CART
           </button>

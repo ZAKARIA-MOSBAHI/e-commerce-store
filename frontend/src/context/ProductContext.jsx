@@ -7,7 +7,20 @@ const ShopContextProvider = (props) => {
   const [showSearch, setShowSearch] = useState(false);
   const [showFilterMenu, setShowFilterMenu] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
-
+  // options for filter menu
+  const filterOptions = {
+    category: ["men", "women", "kids"],
+    price: ["low to high", "high to low"],
+    weartype: ["topwear", "bottomwear", "winterwear"],
+    size: ["S", "M", "L", "XL", "XXL"],
+  };
+  // filters selected by the user
+  const [selectedFilterOptions, setSelectedFilterOptions] = useState({
+    category: null,
+    price: null,
+    weartype: null,
+    size: null,
+  });
   const [cart, setCart] = useState({
     items: [],
     total: 0,
@@ -59,6 +72,9 @@ const ShopContextProvider = (props) => {
     deleteProduct,
     showFilterMenu,
     setShowFilterMenu,
+    selectedFilterOptions,
+    setSelectedFilterOptions,
+    filterOptions,
   };
   useEffect(() => {
     if (showSearch === false) {
