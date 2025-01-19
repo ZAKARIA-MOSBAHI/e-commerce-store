@@ -12,10 +12,20 @@ import Order from "./pages/Order";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import SearchBar from "./components/SearchBar";
+import FilterMenu from "./components/FilterMenu";
+import { useContext } from "react";
+import { ShopContext } from "./context/ProductContext";
 
 function App() {
+  const { showFilterMenu, setShowFilterMenu } = useContext(ShopContext);
   return (
-    <div className=" px-2  sm:px-[5vw] md:px-[7vw] lg:px-[9vw] relative">
+    <div
+      className={` px-2  sm:px-[5vw] md:px-[7vw] lg:px-[9vw] relative overflow-hidden`}
+    >
+      <FilterMenu
+        showFilterMenu={showFilterMenu}
+        setShowFilterMenu={setShowFilterMenu}
+      />
       <SearchBar />
       <Navbar />
       <Routes>

@@ -13,13 +13,13 @@ export default function ProductCard({ product, badge = "", badgeColor = "" }) {
       ? "bg-green-500"
       : "";
   return (
-    <div className="relative">
-      <div
-        className="overflow-hidden text-gray-600 cursor-pointer "
-        onClick={() => {
-          navigate(`/product/${product._id}`);
-        }}
-      >
+    <div
+      className="relative cursor-pointer transition-all duration-300 hover:bg-gray-50"
+      onClick={() => {
+        navigate(`/product/${product._id}`);
+      }}
+    >
+      <div className="overflow-hidden text-gray-600 ">
         <img
           src={product.image[0]}
           alt=""

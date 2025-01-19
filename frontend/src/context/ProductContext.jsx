@@ -5,6 +5,7 @@ export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
   const [showSearch, setShowSearch] = useState(false);
+  const [showFilterMenu, setShowFilterMenu] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
 
   const [cart, setCart] = useState({
@@ -56,6 +57,8 @@ const ShopContextProvider = (props) => {
     cart,
     setCart,
     deleteProduct,
+    showFilterMenu,
+    setShowFilterMenu,
   };
   useEffect(() => {
     if (showSearch === false) {
