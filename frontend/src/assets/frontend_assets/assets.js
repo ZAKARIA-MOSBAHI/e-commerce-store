@@ -73,8 +73,14 @@ import razorpay_logo from "./razorpay_logo.png";
 import stripe_logo from "./stripe_logo.png";
 import cross_icon from "./cross_icon.png";
 import filter_icon from "./filter_icon.png";
+import paypal_icon from "./paypal_icon.webp";
+import cash_on_delivery_icon from "./cash_on_delivery_icon.png";
+import credit_card_icon from "./credit_card_icon.png";
 
 export const assets = {
+  credit_card_icon,
+  cash_on_delivery_icon,
+  paypal_icon,
   logo,
   hero_img,
   cart_icon,

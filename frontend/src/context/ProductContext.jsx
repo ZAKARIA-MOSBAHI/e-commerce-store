@@ -4,6 +4,7 @@ import { products } from "../assets/frontend_assets/assets";
 export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
+  const [LoggedIn, setLoggedIn] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [showFilterMenu, setShowFilterMenu] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
@@ -75,15 +76,15 @@ const ShopContextProvider = (props) => {
     selectedFilterOptions,
     setSelectedFilterOptions,
     filterOptions,
+    LoggedIn,
+    setLoggedIn,
   };
   useEffect(() => {
     if (showSearch === false) {
       setSearchResults([]);
     }
   }, [showSearch]);
-  useEffect(() => {
-    console.log(cart);
-  }, [cart]);
+
   return (
     <ShopContext.Provider value={value}>{props.children}</ShopContext.Provider>
   );

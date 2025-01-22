@@ -15,6 +15,7 @@ import SearchBar from "./components/SearchBar";
 import FilterMenu from "./components/FilterMenu";
 import { useContext } from "react";
 import { ShopContext } from "./context/ProductContext";
+import Profile from "./pages/Profile";
 
 function App() {
   const {
@@ -44,8 +45,9 @@ function App() {
         <Route path="/collections" element={<Collections />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/orders" element={<Order />} />
-        <Route path="/place-orders" element={<PlaceOrder />} />
+        <Route path="/place-order" element={<PlaceOrder />} />
         <Route path="/product/:productId" element={<Product />} />
         <Route path="*" element={<div> 404</div>} />
       </Routes>

@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { assets } from "../assets/frontend_assets/assets";
 import { useContext, useState } from "react";
 import { ShopContext } from "../context/ProductContext";
@@ -12,14 +12,24 @@ function Navbar() {
     dropdown_icon,
   } = assets;
   const [isOpen, setIsOpen] = useState(false);
-  const { setShowSearch, cart } = useContext(ShopContext);
+  const navigate = useNavigate();
+  const { setShowSearch, cart, LoggedIn } = useContext(ShopContext);
+  const redirectTo = () => {
+    if (LoggedIn) {
+      navigate("/profile");
+    } else {
+      navigate("/login");
+    }
+  };
   return (
     <div
       className={`${
         isOpen ? "" : "sticky"
       }  top-0 w-full bg-white z-50  border-b  flex items-center justify-between font-medium py-5`}
     >
-      <img src={logo} className="w-36 cursor-pointer" alt="" />
+      <Link to={"/"}>
+        <img src={logo} className="w-36 cursor-pointer" alt="" />
+      </Link>
       <ul className="hidden sm:flex gap-5 text-gray-700 text-sm">
         <NavLink to="/" className={"flex flex-col items-center gap-1 "}>
           <p>HOME</p>
@@ -49,14 +59,12 @@ function Navbar() {
           onClick={() => setShowSearch(true)}
         />
         <div className="group relative">
-          <img src={profile_icon} className="w-5 cursor-pointer" alt="" />
-          <div className="group-hover:block hidden dropdown-menu absolute right-0 pt-4 ">
-            <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-700 rounded">
-              <p className="cursor-pointer hover:text-black">Profile</p>
-              <p className="cursor-pointer hover:text-black">Orders</p>
-              <p className="cursor-pointer hover:text-black">Logout</p>
-            </div>
-          </div>
+          <img
+            src={profile_icon}
+            className="w-5 cursor-pointer"
+            alt=""
+            onClick={() => redirectTo()}
+          />
         </div>
         <Link to="/cart" className="relative">
           <img src={cart_icon} alt="" className="w-5 cursor-pointer" />

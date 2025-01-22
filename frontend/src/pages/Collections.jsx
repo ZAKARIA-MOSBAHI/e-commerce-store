@@ -11,7 +11,6 @@ const Collections = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   const sortProducts = (filters) => {
-    console.log(filters);
     let productsCopy = products.slice();
     if (filters.category) {
       // filter method returns a new array but it doesn't affect the original array

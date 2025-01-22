@@ -33,14 +33,14 @@ function FilterMenu({
       >
         <div
           className={` ${
-            showFilterMenu ? "right-0 " : "right-[-50%]"
+            showFilterMenu ? "right-0 " : "right-[-100%]"
           }  fixed top-0 overflow-y-scroll  transition-all duration-500  w-full h-full sm:w-1/2 lg:w-1/3 bg-white`}
           style={{ scrollbarWidth: "none" }}
         >
           {/* adding the transition to the child element bcs fixed is based on the viewport not the parent*/}
           <div
             className={`flex ${
-              showFilterMenu ? "right-0 " : "right-[-50%]"
+              showFilterMenu ? "right-0 " : "right-[-100%]"
             } fixed top-0  right-0 transition-all duration-500 w-full  sm:w-1/2 lg:w-1/3 justify-between items-center px-4 h-16 border-b bg-white border-gray-200`}
           >
             <h2 className="text-lg font-bold">SORT & FILTER MENU</h2>
@@ -106,7 +106,7 @@ function FilterMenu({
           </div>
           <div
             className={`flex ${
-              showFilterMenu ? "right-0 " : "right-[-50%]"
+              showFilterMenu ? "right-0 " : "right-[-100%]"
             } fixed bottom-0  right-0 transition-all duration-500 w-full  sm:w-1/2 lg:w-1/3 justify-end items-center cursor-pointer px-4 h-16 border-t bg-white border-gray-200`}
           >
             <h2

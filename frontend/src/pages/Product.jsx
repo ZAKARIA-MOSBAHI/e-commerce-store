@@ -73,7 +73,7 @@ export default function Product() {
           </p>
           <div className="flex flex-col gap-4 my-2 sm:my-6">
             <p className="text-lg sm:text-xl">SIZES</p>
-            <div className="flex gap-2">
+            <div className="flex items-center gap-2">
               {product.sizes &&
                 product.sizes.map((s, i) => {
                   return (
@@ -90,8 +90,8 @@ export default function Product() {
                     </div>
                   );
                 })}
+              {err && <span className="px-4 text-red-500 text-sm">{err}</span>}
             </div>
-            {err && <span className="text-red-500 text-sm">{err}</span>}
           </div>
           <button
             className="px-8 py-2.5 bg-black text-white my-4"
