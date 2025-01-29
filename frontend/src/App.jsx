@@ -6,7 +6,6 @@ import Contact from "./pages/Contact";
 import Collections from "./pages/Collections";
 import Product from "./pages/Product";
 import Cart from "./pages/Cart";
-import Login from "./pages/Login";
 import PlaceOrder from "./pages/PlaceOrder";
 import Order from "./pages/Order";
 import Navbar from "./components/Navbar";
@@ -16,6 +15,7 @@ import FilterMenu from "./components/FilterMenu";
 import { useContext } from "react";
 import { ShopContext } from "./context/ProductContext";
 import Profile from "./pages/Profile";
+import Register from "./pages/Register";
 
 function App() {
   const {
@@ -44,7 +44,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/collections" element={<Collections />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/orders" element={<Order />} />
         <Route path="/place-order" element={<PlaceOrder />} />

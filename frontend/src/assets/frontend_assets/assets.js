@@ -76,8 +76,12 @@ import filter_icon from "./filter_icon.png";
 import paypal_icon from "./paypal_icon.webp";
 import cash_on_delivery_icon from "./cash_on_delivery_icon.png";
 import credit_card_icon from "./credit_card_icon.png";
+import eye from "./eye.png";
+import noEye from "./noEye.png";
 
 export const assets = {
+  eye,
+  noEye,
   credit_card_icon,
   cash_on_delivery_icon,
   paypal_icon,

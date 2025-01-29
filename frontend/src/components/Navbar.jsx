@@ -18,7 +18,7 @@ function Navbar() {
     if (LoggedIn) {
       navigate("/profile");
     } else {
-      navigate("/login");
+      navigate("/register");
     }
   };
   return (
