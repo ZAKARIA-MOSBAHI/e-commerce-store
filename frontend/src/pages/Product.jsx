@@ -1,8 +1,11 @@
 import { useContext, useEffect, useState } from "react";
+import { simpleFaker } from "@faker-js/faker";
+
 import { useParams } from "react-router-dom";
 import { ShopContext } from "../context/ProductContext";
 import { assets } from "../assets/frontend_assets/assets";
 import SimilarProducts from "../components/SimilarProducts";
+import Toast from "../components/Toast";
 
 export default function Product() {
   const [product, setProduct] = useState({});
@@ -11,6 +14,7 @@ export default function Product() {
   const { productId } = useParams();
   const { star_dull_icon, star_icon } = assets;
   const [sizeChoosen, setSizeChoosen] = useState(null);
+  const [showToast, setShowToast] = useState(true);
 
   const [err, setErr] = useState("");
   const fetchProductData = async () => {
@@ -22,13 +26,24 @@ export default function Product() {
       }
     });
   };
+  const handleClick = () => {
+    const reference = simpleFaker.string.uuid();
+    if (sizeChoosen) {
+      addToCart({ ...product, sizeChoosen: sizeChoosen, ref: reference });
+
+      setShowToast(true);
+    } else {
+      setErr("Please select a size");
+    }
+  };
   useEffect(() => {
     setSizeChoosen(null);
     fetchProductData();
+    setShowToast(false);
   }, [productId]);
 
   return (
-    <div className="border-t border-black pt-10 transition-opacity duration-500 opacity-100 ">
+    <div className="border-t border-black pt-10 transition-opacity duration-500 opacity-100 relative">
       {/* PRODUCT DATA */}
       <div className="flex gap-12 flex-col sm:flex-row mb-4">
         {/* PRODUCT IMAGES */}
@@ -95,11 +110,7 @@ export default function Product() {
           </div>
           <button
             className="px-8 py-2.5 bg-black text-white my-4"
-            onClick={() =>
-              sizeChoosen
-                ? addToCart({ ...product, sizeChoosen: sizeChoosen })
-                : setErr("Please select a size")
-            }
+            onClick={handleClick}
           >
             ADD TO CART
           </button>
@@ -107,11 +118,12 @@ export default function Product() {
       </div>
       {/* similar products */}
       <div>
-        <p className="text-2xl font-medium sm:py-8 py-4 border-t border-black  ">
+        <p className="text-2xl font-medium sm:py-8 py-4 border-t border-black">
           SIMILAR PRODUCTS
         </p>
         <SimilarProducts pCategory={product.category} pId={product._id} />
       </div>
+      {showToast && <Toast setShowToast={setShowToast} />}
     </div>
   );
 }

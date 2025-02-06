@@ -42,7 +42,7 @@ const ShopContextProvider = (props) => {
     setCart((prevCart) => ({
       ...prevCart,
       items: cart.items.filter((cartItem) => {
-        return cartItem._id !== p._id || cartItem.sizeChoosen !== p.sizeChoosen;
+        return cartItem.ref !== p.ref;
       }),
       total: cart.total - p.price,
     }));

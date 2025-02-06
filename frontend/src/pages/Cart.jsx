@@ -7,6 +7,7 @@ function Cart() {
   const { cart, deleteProduct, currency, shipping_fees } =
     useContext(ShopContext);
   const { bin_icon } = assets;
+  console.log(cart.items);
   return (
     <div>
       <div className="flex flex-col  md:flex-row justify-between ">
