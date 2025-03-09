@@ -1,21 +1,24 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Collections from "./pages/Collections";
-import Product from "./pages/Product";
-import Cart from "./pages/Cart";
-import PlaceOrder from "./pages/PlaceOrder";
-import Order from "./pages/Order";
+
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import SearchBar from "./components/SearchBar";
-import FilterMenu from "./components/FilterMenu";
-import { useContext } from "react";
+import FilterMenu from "./pages/Collections/components/FilterMenu";
+import { lazy, Suspense, useContext } from "react";
 import { ShopContext } from "./context/ProductContext";
-import Profile from "./pages/Profile";
-import Register from "./pages/Register";
+import Loading from "./components/ui/Loading";
+import Footer from "./components/Footer/Footer";
+
+const Home = lazy(() => import("./pages/Home/Home"));
+const About = lazy(() => import("./pages/About/About"));
+const Contact = lazy(() => import("./pages/Contact/Contact"));
+const Collections = lazy(() => import("./pages/Collections/Collections"));
+const Product = lazy(() => import("./pages/Product/Product"));
+const PlaceOrder = lazy(() => import("./pages/PlaceOrder/PlaceOrder"));
+const Cart = lazy(() => import("./pages/Cart/Cart"));
+const Profile = lazy(() => import("./pages/Profile/Profile"));
+const Register = lazy(() => import("./pages/Register"));
+const Order = lazy(() => import("./pages/Order"));
 
 function App() {
   const {
@@ -26,9 +29,7 @@ function App() {
     filterOptions,
   } = useContext(ShopContext);
   return (
-    <div
-      className={` px-2  sm:px-[5vw] md:px-[7vw] lg:px-[9vw] relative overflow-hidden`}
-    >
+    <div className={`relative overflow-hidden`}>
       <FilterMenu
         showFilterMenu={showFilterMenu}
         setShowFilterMenu={setShowFilterMenu}
@@ -38,19 +39,23 @@ function App() {
       />
       <SearchBar />
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/collections" element={<Collections />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/orders" element={<Order />} />
-        <Route path="/place-order" element={<PlaceOrder />} />
-        <Route path="/product/:productId" element={<Product />} />
-        <Route path="*" element={<div> 404</div>} />
-      </Routes>
+      <div className="max-w-[1152px] w-full mx-auto">
+        <Suspense fallback={<Loading />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/collections" element={<Collections />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/orders" element={<Order />} />
+            <Route path="/place-order" element={<PlaceOrder />} />
+            <Route path="/product/:productId" element={<Product />} />
+            <Route path="*" element={<div> 404</div>} />
+          </Routes>
+        </Suspense>
+      </div>
       <Footer />
     </div>
   );

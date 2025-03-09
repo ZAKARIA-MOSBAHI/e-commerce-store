@@ -1,41 +1,53 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ShopContext } from "../context/ProductContext";
 import { useNavigate } from "react-router-dom";
+import HeartIcon from "../assets/client/icons/HeartIcon";
+import Badge from "./ui/Badge";
 
-export default function ProductCard({ product, badge = "", badgeColor = "" }) {
+export default function ProductCard({
+  product,
+  withBadge,
+  withHeart,
+  badgeText = "",
+  badgeColor = "",
+}) {
   const { currency } = useContext(ShopContext);
+  const [isFavorite, setIsFavorite] = useState(false);
   const navigate = useNavigate();
-  //since tailwing doesn't support dynamic class names, we use a conditional statement to add the class
-  const Color =
-    badgeColor === "red"
-      ? "bg-red-500"
-      : badgeColor === "green"
-      ? "bg-green-500"
-      : "";
+
   return (
-    <div
-      className="relative cursor-pointer transition-all duration-300 hover:bg-gray-50"
-      onClick={() => {
-        navigate(`/product/${product._id}`);
-      }}
-    >
-      <div className="overflow-hidden text-gray-600 ">
+    <div className="overflow-hidden bg-white relative rounded-md shadow-card   max-w-[350px] w-full cursor-pointer transition-all duration-300 ">
+      <div className="overflow-hidden ">
         <img
           src={product.image[0]}
           alt=""
-          className="hover:scale-110 transition ease-in-out"
+          className="hover:scale-110 transition ease-in-out h-full  w-full object-cover"
         />
       </div>
-      <p className="pt-3 pb-1 text-sm">{product.name}</p>
-      <p className="font-medium text-sm ps-1">
-        {currency}
-        {product.price}
-      </p>
-      <span
-        className={`absolute top-2 left-2 inline-flex items-center rounded-md  ${Color} px-2 py-1 text-xs font-medium  text-white`}
+      <div
+        className="p-2 flex flex-col gap-2"
+        onClick={() => navigate(`/product/${product._id}`)}
       >
-        {badge}
-      </span>
+        <p className="text-desktop-sm text-gray-400">Men's Wear / BottomWear</p>
+        <p
+          className=" text-desktop-p font-medium truncate"
+          title={product.name}
+        >
+          {product.name}
+        </p>
+        <p className="font-medium text-desktop-p">
+          {currency}
+          {product.price}
+        </p>
+      </div>
+      {withBadge && <Badge content={badgeText} color={badgeColor} />}
+      {withHeart && (
+        <HeartIcon
+          className={"absolute top-3 right-3 "}
+          onClick={() => setIsFavorite(!isFavorite)}
+          isFavorite={isFavorite}
+        />
+      )}
     </div>
   );
 }

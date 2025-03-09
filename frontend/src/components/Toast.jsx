@@ -2,7 +2,7 @@ function Toast({ setShowToast }) {
   return (
     <div
       id="toast-success"
-      className="fixed right-[10%] z-[9999] top-[5%] flex items-center w-full max-w-xs p-4 mb-4 text-gray-900 bg-white rounded-lg shadow-lg "
+      className="fixed right-[10%] z-9999 top-[5%] flex items-center w-full max-w-xs p-4 mb-4 text-gray-900 bg-white rounded-lg shadow-lg "
       role="alert"
     >
       <div className="inline-flex items-center justify-center shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg 0">

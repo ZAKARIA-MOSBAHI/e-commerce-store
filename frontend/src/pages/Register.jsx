@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Login from "../components/Login";
-import SignUp from "../components/SignUp";
+import Login from "./Login/Login";
+import SignUp from "./SignUp/SignUp";
 
 function Register() {
   const [PageType, setPageType] = useState("login");

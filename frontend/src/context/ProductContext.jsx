@@ -1,9 +1,10 @@
 import { createContext, useEffect, useState } from "react";
-import { products } from "../assets/frontend_assets/assets";
+import { products } from "../assets/client/assets";
 
 export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
+  const [sizeChoosen, setSizeChoosen] = useState(null);
   const [LoggedIn, setLoggedIn] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [showFilterMenu, setShowFilterMenu] = useState(false);
@@ -29,13 +30,66 @@ const ShopContextProvider = (props) => {
 
   const addToCart = (value) => {
     if (value.sizeChoosen) {
-      setCart((prevCart) => ({
-        ...prevCart,
-        items: [...cart.items, value],
-        total: cart.total + value.price,
-      }));
+      const similarItems = cart.items.filter(
+        (item) =>
+          item._id === value._id && item.sizeChoosen === value.sizeChoosen
+      );
+
+      if (similarItems.length === 0) {
+        // If no similar items exist, add the new item to the cart
+        setCart((prevCart) => ({
+          ...prevCart,
+          items: [...prevCart.items, value],
+          total: prevCart.total + value.price,
+        }));
+      } else {
+        // If a similar item exists, increase the quantity
+        const updatedItems = cart.items.map((item) =>
+          item._id === similarItems[0]._id &&
+          item.sizeChoosen === similarItems[0].sizeChoosen
+            ? { ...item, quantity: item.quantity + 1 } // Spread to avoid mutation
+            : item
+        );
+
+        setCart((prevCart) => ({
+          ...prevCart,
+          items: updatedItems,
+          total: prevCart.total + value.price, // Update the total price
+        }));
+      }
     } else {
       return;
+    }
+  };
+
+  const incrementProductQuantity = (product) => {
+    const updatedItems = cart.items.map((item) =>
+      item._id === product._id && item.sizeChoosen === product.sizeChoosen
+        ? { ...item, quantity: item.quantity + 1 }
+        : item
+    );
+
+    setCart((prevCart) => ({
+      ...prevCart,
+      items: updatedItems,
+      total: prevCart.total + product.price,
+    }));
+  };
+  const decrementProductQuantity = (product) => {
+    if (product.quantity === 1) {
+      return;
+    } else {
+      const updatedItems = cart.items.map((item) =>
+        item._id === product._id && item.sizeChoosen === product.sizeChoosen
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      );
+
+      setCart((prevCart) => ({
+        ...prevCart,
+        items: updatedItems,
+        total: prevCart.total - product.price,
+      }));
     }
   };
   const deleteProduct = (p) => {
@@ -60,6 +114,10 @@ const ShopContextProvider = (props) => {
     setSearchResults(searchedProducts);
   };
   const value = {
+    sizeChoosen,
+    setSizeChoosen,
+    decrementProductQuantity,
+    incrementProductQuantity,
     currency: "$",
     shipping_fees: 15,
     products,

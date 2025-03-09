@@ -11,7 +11,7 @@ export default function SearchResult({ result }) {
       }}
       to={`/product/${result._id}`}
       className=" gap-2 sm:gap-4 transition-all duration-500 w-36 sm:w-60 hover:bg-gray-100 cursor-pointer
-      border border-1"
+    border-1"
     >
       <div className="overflow-hidden">
         <img
