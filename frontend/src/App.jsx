@@ -8,6 +8,7 @@ import { lazy, Suspense, useContext } from "react";
 import { ShopContext } from "./context/ProductContext";
 import Loading from "./components/ui/Loading";
 import Footer from "./components/Footer/Footer";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
 
 const Home = lazy(() => import("./pages/Home/Home"));
 const About = lazy(() => import("./pages/About/About"));
@@ -45,14 +46,14 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/collections" element={<Collections />} />
+            <Route path="/collections/:pageNumber" element={<Collections />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/orders" element={<Order />} />
             <Route path="/place-order" element={<PlaceOrder />} />
             <Route path="/product/:productId" element={<Product />} />
-            <Route path="*" element={<div> 404</div>} />
+            <Route path="*" element={<ErrorPage />} />
           </Routes>
         </Suspense>
       </div>

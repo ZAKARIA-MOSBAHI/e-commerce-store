@@ -4,11 +4,15 @@ import ProductCard from "../../components/ProductCard";
 import { ShopContext } from "../../context/ProductContext";
 import FilterIcon from "../../assets/client/icons/FilterIcon";
 import Pagination from "./components/Pagination";
+import { useParams } from "react-router-dom";
+import ProductsCollection from "../Home/components/ProductsCollection";
+import ProcuctsList from "./components/ProcuctsList";
 
 const Collections = () => {
   const { products, setShowFilterMenu, selectedFilterOptions } =
     useContext(ShopContext);
-  const [pageIndex, setPageIndex] = useState(0);
+  const { pageNumber } = useParams();
+  const maxPages = Math.ceil(products.length / 12);
 
   const [filteredProducts, setFilteredProducts] = useState([]);
 
@@ -49,9 +53,9 @@ const Collections = () => {
     sortProducts(selectedFilterOptions);
   }, [selectedFilterOptions]);
   useEffect(() => {
-    const productPage = products.slice(pageIndex * 12, (pageIndex + 1) * 12);
+    const productPage = products.slice((pageNumber - 1) * 12, pageNumber * 12);
     setFilteredProducts(productPage);
-  }, [pageIndex]);
+  }, [pageNumber]);
 
   return (
     <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10  relative max-w-[1152px] w-full mx-auto xl:px-0 px-4">
@@ -68,12 +72,12 @@ const Collections = () => {
             <FilterIcon />
           </button>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 place-items-center lg:grid-cols-4 gap-4 gap-y-8">
-          {filteredProducts.map((p, i) => {
-            return <ProductCard product={p} key={i} withHeart />;
-          })}
-        </div>
-        <Pagination pageIndex={pageIndex} setPageIndex={setPageIndex} />
+        {pageNumber > 0 && pageNumber < maxPages + 1 ? (
+          <ProcuctsList filteredProducts={filteredProducts} />
+        ) : (
+          <div>NO PRODUCTS FOUND </div>
+        )}
+        <Pagination pageIndex={pageNumber} maxPages={maxPages} />
       </div>
     </div>
   );

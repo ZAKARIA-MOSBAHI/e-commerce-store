@@ -35,7 +35,7 @@ function Navbar() {
           </Link>
           <ul className="hidden md:flex items-center gap-5 text-gray-700 text-sm">
             <NavLink to="/">HOME</NavLink>
-            <NavLink to="/collections">COLLECTIONS</NavLink>
+            <NavLink to="/collections/1">COLLECTIONS</NavLink>
             <NavLink to="/about">ABOUT</NavLink>
             <NavLink to="/contact">CONTACT</NavLink>
           </ul>

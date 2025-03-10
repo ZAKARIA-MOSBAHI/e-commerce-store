@@ -1,18 +1,19 @@
+import { useNavigate } from "react-router-dom";
 import { products } from "../../../assets/client/assets";
 import DropdownIcon from "../../../assets/client/icons/DropdownIcon";
 
-export default function Pagination({ pageIndex, setPageIndex }) {
-  const maxPages = Math.ceil(products.length / 12);
-  console.log(maxPages);
+export default function Pagination({ pageIndex, maxPages }) {
+  const pageNumber = parseInt(pageIndex);
+  const navigate = useNavigate();
   const togglePages = (to) => {
-    if (pageIndex === 0 && to === "back") {
+    if (pageNumber === 1 && to === "back") {
       return;
-    } else if (pageIndex === maxPages && to === "next") {
+    } else if (pageNumber === maxPages && to === "next") {
       return;
     } else if (to === "next") {
-      setPageIndex(pageIndex + 1);
+      navigate(`/collections/${pageNumber + 1}`);
     } else if (to === "back") {
-      setPageIndex(pageIndex - 1);
+      navigate(`/collections/${pageNumber - 1}`);
     }
   };
 
@@ -25,9 +26,9 @@ export default function Pagination({ pageIndex, setPageIndex }) {
       {Array.from({ length: maxPages }).map((i, index) => (
         <button
           key={index}
-          onClick={() => setPageIndex(index)}
+          onClick={() => navigate(`/collections/${index + 1}`)}
           className={`p-2 cursor-pointer px-4 rounded-md text-center font-medium drop-shadow-[0_10px_40px_rgba(0,0,0,0.1)] ${
-            pageIndex === index
+            pageNumber === index + 1
               ? "bg-gray-900 text-white"
               : "bg-white text-gray-500"
           }`}

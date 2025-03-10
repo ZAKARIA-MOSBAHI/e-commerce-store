@@ -1,9 +1,10 @@
-export default function StartIcon() {
+export default function StartIcon({ className }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       version="1.1"
       viewBox="18 18 70 70"
+      className={className}
       width={32}
       height={32}
     >

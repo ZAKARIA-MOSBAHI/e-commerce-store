@@ -2,6 +2,8 @@ import { useContext, useRef, useState } from "react";
 import api from "../../api/axios";
 import { assets } from "../../assets/client/assets";
 import { ShopContext } from "../../context/ProductContext";
+import ShowPasswordIcon from "../../assets/client/icons/ShowPasswordIcon";
+import HidePasswordIcon from "../../assets/client/icons/HidePasswordIcon";
 
 export default function Login({ setPageType }) {
   const { eye, noEye } = assets;
@@ -75,11 +77,7 @@ export default function Login({ setPageType }) {
                 setShowPassword(!showPassword);
               }}
             >
-              <img
-                className="w-7 h-full"
-                src={showPassword ? noEye : eye}
-                alt=""
-              />
+              {showPassword ? <ShowPasswordIcon /> : <HidePasswordIcon />}
             </div>
           </div>
           <p className="text-sm sm:text-base my-1 text-right">
