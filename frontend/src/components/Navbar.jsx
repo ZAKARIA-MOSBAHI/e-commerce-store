@@ -65,12 +65,12 @@ function Navbar() {
           </div>
           {/* side bar for smaller screens  */}
           <div
-            className={`absolute h-full top-0 right-0 z-10 bottom-0 overflow-hidden transition-all duration-500 bg-white ${
+            className={`absolute h-full top-0 right-0 z-10  transition-all duration-500 bg-gray-500 ${
               isOpen ? "w-full" : "w-0"
             }`}
           >
             <div
-              className="flex flex-col  text-gray-600"
+              className="flex flex-col bg-red-400 text-gray-600"
               onClick={() => {
                 setIsOpen(false);
               }}
@@ -101,7 +101,7 @@ function Navbar() {
                 onClick={() => {
                   setIsOpen(false);
                 }}
-                to={"/collections"}
+                to={"/collections/1"}
               >
                 COLLECTIONS
               </NavLink>

@@ -7,26 +7,26 @@ export default function CartItem({ item }) {
   const { deleteProduct, currency } = useContext(ShopContext);
   return (
     <>
-      <div className="flex gap-4 relative my-2">
+      <div className="flex w-full gap-4 relative my-2 p-4">
         <img
           src={item.image[0]}
           alt=""
           className="w-36 rounded-lg h-auto object-cover"
         />
         <div className="w-full flex-col flex gap-4 ">
-          <div className="flex justify-between items-center text-lg sm:text-xl">
+          <div className="flex justify-between items-center flex-wrap text-lg sm:text-xl">
             <h1 className=" text-gray-600 my-2">{item.name}</h1>
             <p className="font-medium">
               {currency}
               {item.price}
             </p>
           </div>
-          <div className="flex gap-8 items-center">
-            <div className="flex gap-4 items-center">
+          <div className="flex gap-4 md:gap-8 flex-wrap items-center">
+            <div className="flex flex-wrap gap-4 items-center">
               <span className="text-gray-500">Quantity </span>
               <QuantityCounter quantity={item.quantity} product={item} />
             </div>
-            <div className="flex gap-4 items-center">
+            <div className="flex gap-4 flex-wrap items-center">
               <span className="text-gray-500">Size </span>
               <SelectMenu product={item} />
             </div>

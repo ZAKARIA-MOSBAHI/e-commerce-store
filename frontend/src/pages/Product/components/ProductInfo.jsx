@@ -16,7 +16,7 @@ export default function ProductInfo({
       <div className="flex gap-8 flex-col">
         <h1 className="font-medium text-3xl ">{product.name}</h1>
         <p className=" text-gray-700">{product.description}</p>
-        <div className="flex justify-between items-center">
+        <div className="flex flex-wrap  gap-y-8 justify-between items-center">
           <div className="flex text-lg md:text-xl gap-4 items-center">
             <h2 className="  text-gray-500">Price </h2>
             <p className="font-medium">
@@ -27,10 +27,7 @@ export default function ProductInfo({
           <div className="flex  sm:max-w-[120px] lg:max-w-none text-lg md:text-xl gap-x-4 items-center flex-wrap">
             <h2 className="  text-gray-500">Rating (122)</h2>
             <div className="flex items-center ">
-              <StartIcon className={"w-6 h-6 md:w-8 md:h-8"} />
-              <StartIcon className={"w-6 h-6 md:w-8 md:h-8"} />
-              <StartIcon className={"w-6 h-6 md:w-8 md:h-8"} />
-              <StartIcon className={"w-6 h-6 md:w-8 md:h-8"} />
+              <StartIcon count={4} className={"w-6 h-6 md:w-8 md:h-8"} />
             </div>
           </div>
         </div>
