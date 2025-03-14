@@ -9,6 +9,7 @@ import { ShopContext } from "./context/ProductContext";
 import Loading from "./components/ui/Loading";
 import Footer from "./components/Footer/Footer";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import ScrollToTop from "./components/ScrollTop";
 
 const Home = lazy(() => import("./pages/Home/Home"));
 const About = lazy(() => import("./pages/About/About"));
@@ -40,7 +41,8 @@ function App() {
       />
       <SearchBar />
       <Navbar />
-      <div className="max-w-[1152px] w-full mx-auto">
+      <div className="max-w-[1152px] w-full mx-auto px-8">
+        <ScrollToTop />
         <Suspense fallback={<Loading />}>
           <Routes>
             <Route path="/" element={<Home />} />

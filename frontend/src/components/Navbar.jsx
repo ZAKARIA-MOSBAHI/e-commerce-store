@@ -7,12 +7,9 @@ import ProfileIcon from "../assets/client/icons/ProfileIcon";
 import MenuIcon from "../assets/client/icons/MenuIcon";
 import CartIcon from "../assets/client/icons/CartIcon";
 import Headroom from "react-headroom";
+import MobileNavbar from "./MobileNavbar";
 function Navbar() {
-  const {
-    logo,
-
-    dropdown_icon,
-  } = assets;
+  const { logo } = assets;
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const { setShowSearch, cart, LoggedIn } = useContext(ShopContext);
@@ -44,7 +41,7 @@ function Navbar() {
               className={"cursor-pointer"}
               onClick={() => setShowSearch(true)}
             />
-            <div className="group relative">
+            <div className="group relative hidden md:block">
               <ProfileIcon onClick={redirectTo} className={"cursor-pointer"} />
             </div>
             <Link to="/cart" className="relative  cursor-pointer">
@@ -64,71 +61,11 @@ function Navbar() {
             />
           </div>
           {/* side bar for smaller screens  */}
-          <div
-            className={`absolute h-full top-0 right-0 z-10  transition-all duration-500 bg-gray-500 ${
-              isOpen ? "w-full" : "w-0"
-            }`}
-          >
-            <div
-              className="flex flex-col bg-red-400 text-gray-600"
-              onClick={() => {
-                setIsOpen(false);
-              }}
-            >
-              <div className="flex items-center gap-4 p-3 border">
-                <img
-                  src={dropdown_icon}
-                  className="h-4 rotate-90 cursor-pointer"
-                  alt=""
-                />
-                <p className="cursor-pointer">Back</p>
-              </div>
-              <NavLink
-                className={
-                  "p-3 border hover:ps-[rem] transition-all duration-200"
-                }
-                onClick={() => {
-                  setIsOpen(false);
-                }}
-                to={"/"}
-              >
-                HOME
-              </NavLink>
-              <NavLink
-                className={
-                  "p-3 border hover:ps-[rem] transition-all duration-200"
-                }
-                onClick={() => {
-                  setIsOpen(false);
-                }}
-                to={"/collections/1"}
-              >
-                COLLECTIONS
-              </NavLink>
-              <NavLink
-                className={
-                  "p-3 border hover:ps-[rem] transition-all duration-200"
-                }
-                onClick={() => {
-                  setIsOpen(false);
-                }}
-                to={"/about"}
-              >
-                ABOUT
-              </NavLink>
-              <NavLink
-                className={
-                  "p-3 border hover:ps-[rem] transition-all duration-200"
-                }
-                onClick={() => {
-                  setIsOpen(false);
-                }}
-                to={"/contact"}
-              >
-                CONTACT
-              </NavLink>
-            </div>
-          </div>
+          <MobileNavbar
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            redirectTo={redirectTo}
+          />
         </div>
       </div>
     </Headroom>
