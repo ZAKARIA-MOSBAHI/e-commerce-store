@@ -17,7 +17,7 @@ export default function ProductCard({
 
   return (
     <div className="overflow-hidden  relative hover:shadow-card   max-w-[350px] w-full cursor-pointer transition-all duration-300 ">
-      <div className="overflow-hidden ">
+      <div className="overflow-hidden max-h-[300px] ">
         <img
           loading="lazy"
           src={product.image[0]}
