@@ -41,7 +41,7 @@ function App() {
       />
       <SearchBar />
       <Navbar />
-      <div className="max-w-[1152px] w-full mx-auto px-8">
+      <div className="max-w-[1152px] w-full mx-auto px-4 md:px-8">
         <ScrollToTop />
         <Suspense fallback={<Loading />}>
           <Routes>

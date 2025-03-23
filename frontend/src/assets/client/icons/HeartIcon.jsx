@@ -1,8 +1,14 @@
-export default function HeartIcon({ className, onClick, isFavorite }) {
+export default function HeartIcon({
+  className,
+  onClick,
+  isFavorite,
+  width = 44,
+  height = 44,
+}) {
   return (
     <svg
-      width={44}
-      height={44}
+      width={width}
+      height={height}
       className={className}
       onClick={onClick}
       xmlns="http://www.w3.org/2000/svg"

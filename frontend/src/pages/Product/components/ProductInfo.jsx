@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import StartIcon from "../../../assets/client/icons/StartIcon";
 import { ShopContext } from "../../../context/ProductContext";
+import HeartIcon from "../../../assets/client/icons/HeartIcon";
 
 export default function ProductInfo({
   product,
@@ -53,12 +54,17 @@ export default function ProductInfo({
             {err && <span className="px-4 text-red-500 text-sm">{err}</span>}
           </div>
         </div>
-        <button
-          className="px-8 py-2.5 w-fit bg-black text-white cursor-pointer"
-          onClick={handleClick}
-        >
-          ADD TO CART
-        </button>
+        <div className="flex gap-4">
+          <button
+            className="px-8 py-2.5 w-fit bg-black text-white cursor-pointer"
+            onClick={handleClick}
+          >
+            ADD TO CART
+          </button>
+          <div className="bg-gray-100 rounded-md flex justify-center items-center px-2">
+            <HeartIcon width={32} height={32} />
+          </div>
+        </div>
       </div>
     </div>
   );
